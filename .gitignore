@@ -1,12 +1,12 @@
-node_modules
-.env
-coverage
-coverage.json
-typechain
-typechain-types
-aritifacts-zk
-cache-zk
+backend/node_modules
+backend/.env
+backend/coverage
+backend/coverage.json
+backend/typechain
+backend/typechain-types
+backend/aritifacts-zk
+backend/cache-zk
 
 #Hardhat files
-cache*
-artifacts*
+backend/cache*
+backend/artifacts*
