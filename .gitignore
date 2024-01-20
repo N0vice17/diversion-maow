@@ -4,6 +4,8 @@ coverage
 coverage.json
 typechain
 typechain-types
+aritifacts-zk
+cache-zk
 
 #Hardhat files
 cache*
