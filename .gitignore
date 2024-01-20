@@ -19,7 +19,6 @@ frontend/.pnp.js
 
 # testing
 frontend/coverage
-frontend/
 # next.js
 frontend/.next/
 frontend/out/
