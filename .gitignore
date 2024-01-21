@@ -10,7 +10,6 @@ backend/cache-zk
 #Hardhat files
 backend/cache*
 backend/artifacts*
-backend/bun.lockb
 
 
 # dependencies
@@ -41,3 +40,4 @@ frontend/.env.local
 frontend/.env.development.local
 frontend/.env.test.local
 frontend/.env.production.local
+frontend/bun.lockb
