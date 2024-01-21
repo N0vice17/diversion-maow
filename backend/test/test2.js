@@ -10,8 +10,9 @@ describe("Voting_contract", function () {
         }
 
         await voting_contract.castvote("MAOW1", "MAOW1", 1);
+        await voting_contract.castvote("MAO2", "MAOW2", 0);
         const data = await voting_contract.get_votes_data();
-        // console.log(data);
-
+        await voting_contract.castvote("MAOW1", "MAOW1", 1);
+        console.log(data);
     });
 });

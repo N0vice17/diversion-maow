@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
 contract Voting_contract {
@@ -17,38 +18,50 @@ contract Voting_contract {
     }
 
     function valid(
-        string memory pan,
-        string memory adhar
+        string memory _pan,
+        string memory _adhar
     ) public view returns (bool) {
         for (uint i = 0; i < data.length; i++) {
             if (
-                compareString(data[i].adhar, adhar) &&
-                compareString(data[i].pan, pan)
+                compareString(data[i].adhar, _adhar) &&
+                compareString(data[i].pan, _pan)
             ) {
                 return data[i].voted;
             }
         }
+        return false;
     }
 
     function castvote(
         string memory pan,
         string memory adhar,
         uint256 index
-    ) public returns (bool) {
-        if (valid(pan, adhar) == false) {
+    ) public {
+        if (!valid(pan, adhar)) {
             party_votes[index] += 1;
             for (uint i = 0; i < data.length; i++) {
                 if (
                     compareString(data[i].adhar, adhar) &&
                     compareString(data[i].pan, pan)
                 ) {
-                    data[i].voted = false;
+                    data[i].voted = true;
                 }
             }
-            return true;
-        } else {
-            return false;
         }
+    }
+
+    function get_winner() public view returns (uint256){
+        uint256 votes=0,ans=0;
+        for(uint i=0;i<party_votes;i++){
+            if(party_votes[i]>votes){
+                ans=i;
+            }
+        }
+        return ans;
+    }
+
+    function get_data() public view returns (Voter[] memory) {
+        return data;
     }
 
     function get_votes_data() public view returns (uint256[6] memory) {

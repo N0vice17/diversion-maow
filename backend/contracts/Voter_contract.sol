@@ -16,13 +16,13 @@ contract Voter_contract {
         string memory _pan,
         string memory _adhar,
         string memory _name,
-        string memory _number,
+        string memory _number
     ) public {
         voter = Voter({
             pan: _pan,
             adhar: _adhar,
             name: _name,
-            number: _number,
+            number: _number
         });
         data.push(voter);
     }
