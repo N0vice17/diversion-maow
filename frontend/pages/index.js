@@ -18,7 +18,7 @@ function Input({ className, label, type }) {
   )
 }
 
-function Navigator({ step }) {
+function StepNavigator({ step }) {
   const current_style_up = "rounded text-black font-bold flex border-blue-700 border-2 bg-white max-h-8 justify-center items-center max-w-8 p-1"
   const default_style_up = "flex border-gray-300  border-2 bg-gray-100 text-gray-400 max-h-8 justify-center items-center max-w-8 p-1"
   const current_style_down = "text-black"
@@ -75,7 +75,7 @@ export default function Home() {
       <NavBar />
       <div className="bg-gray-100 flex flex-col items-center h-screen">
         <div className="relative flex flex-col gap-8 m-5 max-w-xl">
-          <Navigator step={1} />
+          <StepNavigator step={1} />
           <div className="flex gap-0.5">
             <h1 className="text-2xl w-full">Verify Your PAN</h1>
             <div className="flex w-full justify-end items-end text-gray-600 text-sm gap-0.5">
