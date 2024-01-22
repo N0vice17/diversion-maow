@@ -51,8 +51,9 @@ contract Voting_contract {
     }
 
     function get_winner() public view returns (uint256){
-        uint256 votes=0,ans=0;
-        for(uint i=0;i<party_votes;i++){
+        uint256 votes=0;
+        uint256 ans=0;
+        for(uint i=0;i<party_votes.length;i++){
             if(party_votes[i]>votes){
                 ans=i;
             }
