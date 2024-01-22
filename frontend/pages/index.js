@@ -18,24 +18,27 @@ function Input({ className, label, type }) {
   )
 }
 
-function Navigator({ id }) {
+function Navigator({ step }) {
+  const current_style_up = "rounded text-black font-bold flex border-blue-700 border-2 bg-white max-h-8 justify-center items-center max-w-8 p-1"
+  const default_style_up = "flex border-gray-300  border-2 bg-gray-100 text-gray-400 max-h-8 justify-center items-center max-w-8 p-1"
+  const current_style_down = "text-black"
   return (
-    <div className="flex gap-10">
+    <div className="flex gap-10 text-gray-400">
       <div id="1">
-        <div id="t" className="rounded font-bold flex border-blue-700 border-2 bg-white max-h-8 justify-center items-center max-w-8 p-1">1</div>
-        <div>Enter Details</div>
+        <div id="t" className={step === 1 ? current_style_up : default_style_up}>1</div>
+        <div className={step === 1 ? current_style_down : ""}>Enter Details</div>
       </div>
-      <div>
-        <div id="2" className="flex border-gray-300  border-2 bg-gray-100 text-gray-400 max-h-8 justify-center items-center max-w-8 p-1">2</div>
-        <div className="text-gray-400">Verification</div>
+      <div id="2">
+        <div id="t" className={step === 2 ? current_style_up : default_style_up}>2</div>
+        <div className={step === 2 ? current_style_down : ""}>Verification</div>
       </div>
-      <div>
-        <div id="2" className="flex border-gray-300  border-2 bg-gray-100 text-gray-400 max-h-8 justify-center items-center max-w-8 p-1">3</div>
-        <div className="text-gray-400">connect wallet</div>
+      <div id="3">
+        <div id="t" className={step === 3 ? current_style_up : default_style_up}>3</div>
+        <div className={step === 3 ? current_style_down : ""}>Connect Wallet</div>
       </div>
-      <div>
-        <div id="2" className="flex border-gray-300  border-2 bg-gray-100 text-gray-400 max-h-8 justify-center items-center max-w-8 p-1">4</div>
-        <div className="text-gray-400">Vote</div>
+      <div id="4">
+        <div id="t" className={step === 4 ? current_style_up : default_style_up}>4</div>
+        <div className={step === 4 ? current_style_down : ""}>Vote</div>
       </div>
     </div>
   )
@@ -72,7 +75,7 @@ export default function Home() {
       <NavBar />
       <div className="bg-gray-100 flex flex-col items-center h-screen">
         <div className="relative flex flex-col gap-8 m-5 max-w-xl">
-          <Navigator />
+          <Navigator step={1} />
           <div className="flex gap-0.5">
             <h1 className="text-2xl w-full">Verify Your PAN</h1>
             <div className="flex w-full justify-end items-end text-gray-600 text-sm gap-0.5">
