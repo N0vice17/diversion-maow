@@ -1,4 +1,4 @@
-export default function Vote() {
+export default function() {
   return (
     <>
       <div className="flex gap-0.5">

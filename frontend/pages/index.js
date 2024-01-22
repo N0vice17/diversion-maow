@@ -1,11 +1,9 @@
-// import styles from "../styles/Home.module.css";
-
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 function Card({ children, className }) {
   return (
-    <div className={`${className} drop-shadow`}>{children}</div>
+    <div className={`${className} rounded flex bg-white border-gray-300 border p-12 gap-10 drop-shadow`}>{children}</div>
   )
 }
 
@@ -18,7 +16,7 @@ function Input({ className, label, type }) {
   )
 }
 
-function StepNavigator({ step }) {
+export function StepNavigator({ step }) {
   const current_style_up = "rounded text-black font-bold flex border-blue-700 border-2 bg-white max-h-8 justify-center items-center max-w-8 p-1"
   const default_style_up = "flex border-gray-300  border-2 bg-gray-100 text-gray-400 max-h-8 justify-center items-center max-w-8 p-1"
   const current_style_down = "text-black"
@@ -44,7 +42,7 @@ function StepNavigator({ step }) {
   )
 }
 
-function NavBar() {
+export function NavBar() {
   return (
     <>
       <nav className="h-10 bg-white"></nav>
@@ -53,10 +51,16 @@ function NavBar() {
   )
 }
 
-function Footer() {
+export function Footer() {
   return (
     <footer className="flex relative bg-blue-900 h-full w-full">
     </footer>
+  )
+}
+
+function Otp() {
+  return (
+    <></>
   )
 }
 
@@ -72,33 +76,29 @@ export default function Home() {
   }, [adharNumber, voterId])
   return (
     <>
-      <NavBar />
-      <div className="bg-gray-100 flex flex-col items-center h-screen">
-        <div className="relative flex flex-col gap-8 m-5 max-w-xl">
-          <StepNavigator step={1} />
-          <div className="flex gap-0.5">
-            <h1 className="text-2xl w-full">Verify Your PAN</h1>
-            <div className="flex w-full justify-end items-end text-gray-600 text-sm gap-0.5">
-              <a className="text-red-900">*</a>
-              Indicates mandatory fields
-            </div>
-          </div>
-          <Card className="rounded flex bg-white border-gray-300 border p-12 gap-10">
-            <div className="flex flex-col basis-28 justify-evenly gap-10">
-              <Input label={"Pan"} type={"tel"} />
-              <Input label={"Bob"} type={"date"} />
-            </div>
-            <div className="flex flex-col basis-72 justify-evenly gap-10">
-              <Input label={"Full Name"} type={"text"} />
-              <Input label={"Mobile Number"} type={"tel"} />
-            </div>
-          </Card>
-          <div className="flex justify-between p-2">
-            <button className="rounded border-blue-900 border text-blue-900 font-bold p-2">cancel</button>
-            <button className="rounded bg-gray-400 text-gray-200 shadow shadow-gray-500 font-bold p-2">continue</button>
-          </div>
+      <div className="flex gap-0.5">
+        <h1 className="text-2xl w-full">Verify Your PAN</h1>
+        <div className="flex w-full justify-end items-end text-gray-600 text-sm gap-0.5">
+          <a className="text-red-900">*</a>
+          Indicates mandatory fields
         </div>
-        <Footer />
+      </div>
+      <Card>
+        <div className="flex flex-col basis-28 justify-evenly gap-10">
+          <Input label={"Pan"} type={"tel"} />
+          <Input label={"Bob"} type={"date"} />
+        </div>
+        <div className="flex flex-col basis-72 justify-evenly gap-10">
+          <Input label={"Full Name"} type={"text"} />
+          <Input label={"Mobile Number"} type={"tel"} />
+        </div>
+      </Card>
+      <div className="flex justify-between p-2">
+        <button
+          className="rounded border-blue-900 border text-blue-900 font-bold p-2">cancel</button>
+        <button
+          onClick={_ => { router.push("verification") }}
+          className="rounded bg-gray-400 text-gray-200 shadow shadow-gray-500 font-bold p-2">continue</button>
       </div>
     </>
   );
