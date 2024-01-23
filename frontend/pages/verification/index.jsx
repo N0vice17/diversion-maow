@@ -1,6 +1,8 @@
+import { useRouter } from "next/router";
 import { Card, Input } from "../components";
 
 export default function () {
+  const router = useRouter()
 return (
     <>
       <div className="flex gap-0.5">
@@ -22,7 +24,7 @@ return (
       </Card>
       <div className="flex justify-between p-2">
         <button className="rounded border-blue-900 border text-blue-900 font-bold p-2">cancel</button>
-        <button className="rounded bg-gray-400 text-gray-200 shadow shadow-gray-500 font-bold p-2">continue</button>
+        <button className="rounded bg-gray-400 text-gray-200 shadow shadow-gray-500 font-bold p-2" onClick={() => {router.push("connect")}}>continue</button>
       </div>
     </>
 ) }
