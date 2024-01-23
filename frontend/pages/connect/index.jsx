@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Card,Input } from "../components";
+import { Card } from "../components";
 import { ConnectWallet } from "@thirdweb-dev/react";
 
 export default function() {
@@ -15,14 +15,12 @@ export default function() {
       </div>
       <Card>
         <div className="flex flex-col basis-28 justify-evenly gap-10">
-          <ConnectWallet detailsBtn={() => {
-            return <button>Ankan</button>
-          }}/>
+          <ConnectWallet />
         </div>
       </Card>
       <div className="flex justify-between p-2">
         <button className="rounded border-blue-900 border text-blue-900 font-bold p-2">cancel</button>
-        <button className="rounded bg-gray-400 text-gray-200 shadow shadow-gray-500 font-bold p-2" onClick={() => {router.push("vote")}}>continue</button>
+        <button className="rounded bg-gray-400 text-gray-200 shadow shadow-gray-500 font-bold p-2" onClick={() => { router.push("vote") }}>continue</button>
       </div>
     </>
   )

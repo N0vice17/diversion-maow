@@ -30,7 +30,7 @@ export function StepNavigator() {
 
 
   return (
-    <div className="flex gap-10 text-gray-400">
+    <div className="flex gap-10 text-gray-400 w-full">
       <div id="1">
         <div id="t" className={newPath === "/" ? current_style_up : default_style_up}>1</div>
         <div className={newPath === "/" ? current_style_down : ""}>Enter Details</div>
