@@ -1,3 +1,5 @@
+import { Card, Input } from "../components";
+
 export default function () {
 return (
     <>
