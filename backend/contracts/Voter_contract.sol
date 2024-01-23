@@ -9,8 +9,8 @@ contract Voter_contract {
         string number;
     }
 
-    Voter public voter;
-    Voter[] public data;
+    Voter private voter;
+    Voter[] private data;
 
     function setdata(
         string memory _pan,
@@ -18,16 +18,11 @@ contract Voter_contract {
         string memory _name,
         string memory _number
     ) public {
-        voter = Voter({
-            pan: _pan,
-            adhar: _adhar,
-            name: _name,
-            number: _number
-        });
+        voter = Voter({pan: _pan, adhar: _adhar, name: _name, number: _number});
         data.push(voter);
     }
 
-    function getdata() public view returns (Voter[] memory) {
+    function get_data() public view returns (Voter[] memory) {
         return data;
     }
 }

@@ -8,11 +8,11 @@ contract Voting_contract {
         bool voted;
     }
 
-    Voter public voter;
-    Voter[] public data;
-    uint256[6] public party_votes;
+    Voter private voter;
+    Voter[] private data;
+    uint256[6] private party_votes;
 
-    function setdata(string memory _adhar, string memory _pan) public {
+    function add_voter(string memory _adhar, string memory _pan) public {
         voter = Voter({adhar: _adhar, pan: _pan, voted: false});
         data.push(voter);
     }
@@ -20,7 +20,7 @@ contract Voting_contract {
     function valid(
         string memory _pan,
         string memory _adhar
-    ) public view returns (bool) {
+    ) private view returns (bool) {
         for (uint i = 0; i < data.length; i++) {
             if (
                 compareString(data[i].adhar, _adhar) &&
@@ -35,10 +35,10 @@ contract Voting_contract {
     function castvote(
         string memory pan,
         string memory adhar,
-        uint256 index
+        uint256 contestant_id
     ) public {
         if (!valid(pan, adhar)) {
-            party_votes[index] += 1;
+            party_votes[contestant_id] += 1;
             for (uint i = 0; i < data.length; i++) {
                 if (
                     compareString(data[i].adhar, adhar) &&
@@ -50,22 +50,22 @@ contract Voting_contract {
         }
     }
 
-    function get_winner() public view returns (uint256){
-        uint256 votes=0;
-        uint256 ans=0;
-        for(uint i=0;i<party_votes.length;i++){
-            if(party_votes[i]>votes){
-                ans=i;
+    function get_winner() public view returns (uint256) {
+        uint256 votes = 0;
+        uint256 ans = 0;
+        for (uint i = 0; i < party_votes.length; i++) {
+            if (party_votes[i] > votes) {
+                ans = i;
             }
         }
         return ans;
     }
 
-    function get_data() public view returns (Voter[] memory) {
+    function get_voter_list() public view returns (Voter[] memory) {
         return data;
     }
 
-    function get_votes_data() public view returns (uint256[6] memory) {
+    function get_votes_of_each_party() public view returns (uint256[6] memory) {
         return party_votes;
     }
 
