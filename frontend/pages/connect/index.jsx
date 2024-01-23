@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { Card,Input } from "../components";
+import { ConnectWallet } from "@thirdweb-dev/react";
 
 export default function() {
   const router = useRouter()
@@ -14,12 +15,9 @@ export default function() {
       </div>
       <Card>
         <div className="flex flex-col basis-28 justify-evenly gap-10">
-          <Input label={"Pan"} type={"tel"} />
-          <Input label={"Bob"} type={"date"} />
-        </div>
-        <div className="flex flex-col basis-72 justify-evenly gap-10">
-          <Input label={"Full Name"} type={"text"} />
-          <Input label={"Mobile Number"} type={"tel"} />
+          <ConnectWallet detailsBtn={() => {
+            return <button>Ankan</button>
+          }}/>
         </div>
       </Card>
       <div className="flex justify-between p-2">

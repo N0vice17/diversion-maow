@@ -23,7 +23,7 @@ export default function Home() {
         </div>
       </div>
       <Card className={"flex-col xl:flex-row "}>
-        <div className="flex flex-col flex:basis-28 justify-evenly gap-1 xl:gap-4">
+        <div className="flex flex-col xl:basis-28 justify-evenly gap-1 xl:gap-4">
           <Input label={"Pan"} type={"tel"} />
           <Input label={"Bob"} type={"date"} />
         </div>
