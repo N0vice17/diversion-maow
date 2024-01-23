@@ -22,14 +22,14 @@ export default function Home() {
           Indicates mandatory fields
         </div>
       </div>
-      <Card>
-        <div className="flex flex-col basis-28 justify-evenly gap-10">
+      <Card className={"flex-col xl:flex-row "}>
+        <div className="flex flex-col flex:basis-28 justify-evenly gap-1 xl:gap-4">
           <Input label={"Pan"} type={"tel"} />
           <Input label={"Bob"} type={"date"} />
         </div>
-        <div className="flex flex-col basis-72 justify-evenly gap-10">
-          <Input label={"Full Name"} type={"text"} />
-          <Input label={"Mobile Number"} type={"tel"} />
+        <div className="flex flex-col w-full xl:basis-60 justify-evenly gap-1 xl:gap-4">
+          <Input className={"w-full"} label={"Full Name"} type={"tel"} />
+          <Input className={"w-full"} label={"Adhar Numer"} type={"text"} />
         </div>
       </Card>
       <div className="flex justify-between p-2">

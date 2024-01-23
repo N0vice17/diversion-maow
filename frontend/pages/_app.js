@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }) {
       clientId={process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID}
     >
       <NavBar />
-      <div className="bg-gray-100 flex flex-col items-center h-screen">
+      <div className="bg-gray-100 flex flex-col items-center h-screen w-screen">
         <div className="relative flex flex-col gap-8 m-5 max-w-xl">
           <StepNavigator step={1} />
           <Component {...pageProps} />
