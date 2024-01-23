@@ -25,7 +25,7 @@ export default function Home() {
       <Card className={"flex-col xl:flex-row "}>
         <div className="flex flex-col xl:basis-28 justify-evenly gap-1 xl:gap-4">
           <Input label={"Pan"} type={"tel"} />
-          <Input label={"Bob"} type={"date"} />
+          <Input label={"Date of birth"} type={"date"} />
         </div>
         <div className="flex flex-col w-full xl:basis-60 justify-evenly gap-1 xl:gap-4">
           <Input className={"w-full"} label={"Full Name"} type={"tel"} />
