@@ -32,8 +32,8 @@ export function StepNavigator() {
   return (
     <div className="flex gap-10 text-gray-400">
       <div id="1">
-        <div id="t" className={newPath === "" ? current_style_up : default_style_up}>1</div>
-        <div className={newPath === "" ? current_style_down : ""}>Enter Details</div>
+        <div id="t" className={newPath === "/" ? current_style_up : default_style_up}>1</div>
+        <div className={newPath === "/" ? current_style_down : ""}>Enter Details</div>
       </div>
       <div id="2">
         <div id="t" className={newPath === "/verification" ? current_style_up : default_style_up}>2</div>
