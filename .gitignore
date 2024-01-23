@@ -43,5 +43,5 @@ frontend/.env.production.local
 frontend/bun.lockb
 
 
-testing/node_module
+testing/node_modules
 testing/bun.lock
