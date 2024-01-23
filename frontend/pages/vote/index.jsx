@@ -1,8 +1,10 @@
+import { Card, Input } from "../components";
+
 export default function() {
   return (
     <>
       <div className="flex gap-0.5">
-        <h1 className="text-2xl w-full">Verify Your PAN</h1>
+        <h1 className="text-2xl w-full">Opt Verification</h1>
         <div className="flex w-full justify-end items-end text-gray-600 text-sm gap-0.5">
           <a className="text-red-900">*</a>
           Indicates mandatory fields
@@ -25,3 +27,5 @@ export default function() {
     </>
   )
 }
+
+
