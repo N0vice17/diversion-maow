@@ -14,12 +14,7 @@ return (
       </div>
       <Card>
         <div className="flex flex-col basis-28 justify-evenly gap-10">
-          <Input label={"Pan"} type={"tel"} />
-          <Input label={"Bob"} type={"date"} />
-        </div>
-        <div className="flex flex-col basis-72 justify-evenly gap-10">
-          <Input label={"Full Name"} type={"text"} />
-          <Input label={"Mobile Number"} type={"tel"} />
+          <Input label={"OTP"} type={"tel"} />
         </div>
       </Card>
       <div className="flex justify-between p-2">
