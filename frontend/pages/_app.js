@@ -1,3 +1,4 @@
+
 import { ThirdwebProvider } from '@thirdweb-dev/react';
 import '../styles/globals.css';
 import { Footer, NavBar, StepNavigator } from './components';
@@ -7,14 +8,11 @@ import { Footer, NavBar, StepNavigator } from './components';
 // You can also import additional chains from `@thirdweb-dev/chains` and pass them directly.
 const activeChain = 'mumbai';
 
-console.log(process.env.APP_ID)
-console.log(process.env.CONTRACT_ID)
-
 function MyApp({ Component, pageProps }) {
   return (
     <ThirdwebProvider
       activeChain={activeChain}
-      clientId={process.env.APP_ID}
+      clientId={"fe976d6781818072a8ce5d941a20af"}
     >
       <NavBar />
       <div className="bg-gray-100 flex flex-col items-center h-screen w-screen">

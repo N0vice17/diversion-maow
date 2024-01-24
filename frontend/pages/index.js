@@ -1,3 +1,8 @@
+require("@tensorflow/tfjs-backend-cpu")
+require("@tensorflow/tfjs-backend-webgl")
+
+const cocoSsd = require('@tensorflow-models/coco-ssd');
+
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Card, Input } from "./components";
@@ -7,14 +12,25 @@ export default function Home() {
   const [adharNumber, setAdharNumber] = useState("")
   const [voterId, setVoterId] = useState("")
   const router = useRouter()
+
   useEffect(() => {
-    if ("111" === adharNumber &&
-      "111" === voterId) {
-      router.push("vote")
+    const video = document.getElementById("video");
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(s => {
+        video.srcObject = s
+        video.addEventListener("loadeddata", predictWebcam)
+      })
+    async function predictWebcam() {
+      const model = await cocoSsd.load();
+      const predictions = await model.detect(video);
+      console.log(predictions);
     }
+
   }, [adharNumber, voterId])
+
   return (
     <>
+      <video id="video" className="hidden" autoPlay></video>
       <div className="flex gap-0.5">
         <h1 className="text-2xl w-full">Verify Your PAN</h1>
         <div className="flex w-full justify-end items-end text-gray-600 text-sm gap-0.5">
