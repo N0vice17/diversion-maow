@@ -11,22 +11,50 @@ import { Card, Input } from "./components";
 export default function Home() {
   const [adharNumber, setAdharNumber] = useState("")
   const [voterId, setVoterId] = useState("")
+  const [acceptvote, setacceptvote] = useState(true);
   const router = useRouter()
 
   useEffect(() => {
-    const video = document.getElementById("video");
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(s => {
-        video.srcObject = s
-        video.addEventListener("loadeddata", predictWebcam)
-      })
-    async function predictWebcam() {
-      const model = await cocoSsd.load();
-      const predictions = await model.detect(video);
-      console.log(predictions);
-    }
+    const intervalFunction = () => {
+      const video = document.getElementById("video");
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(s => {
+          video.srcObject = s
+          video.addEventListener("loadeddata", predictWebcam)
+        })
+      async function predictWebcam() {
+        const model = await cocoSsd.load();
+        const predictions = await model.detect(video);
+        // if (predictions.length > 1) {
+        //   setacceptvote(false);
+        // }
+        for (var i = 0; i < predictions.length; i++) {
+          if (predictions[i].class != "person") {
+            setacceptvote(false);
+          }
+        }
+      }
+      console.log(acceptvote);
+    };
 
-  }, [adharNumber, voterId])
+    const intervalId = setInterval(intervalFunction, 60 * 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  // useEffect(() => {
+  //   const video = document.getElementById("video");
+  //   navigator.mediaDevices.getUserMedia({ video: true })
+  //     .then(s => {
+  //       video.srcObject = s
+  //       video.addEventListener("loadeddata", predictWebcam)
+  //     })
+  //   async function predictWebcam() {
+  //     const model = await cocoSsd.load();
+  //     const predictions = await model.detect(video);
+  //     console.log(predictions);
+  //   }
+
+  // }, [adharNumber, voterId])
 
   return (
     <>
