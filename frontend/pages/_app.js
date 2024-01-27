@@ -14,8 +14,8 @@ function MyApp({ Component, pageProps }) {
       activeChain={activeChain}
       clientId={"fe976d6781818072a8ce5d941a20af"}
     >
-      <div className="bg-gray-100 flex flex-col items-center h-screen w-screen">
-        <div className="relative flex flex-col gap-8 m-5 max-w-xl w-full">
+      <div className="bg-gray-100 flex flex-col items-center min-h-screen w-screen">
+        <div className="flex-grow flex flex-col gap-8 m-5 max-w-xl w-full">
           <StepNavigator />
           <Component {...pageProps} />
         </div>
