@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState, useCallback } from "react";
-import { AadharInputComponent, Card, Input, VoterIdInputComponent } from "./components";
+import SurveillancePopup, { AadharInputComponent, Card, Input, VoterIdInputComponent } from "./components";
 import "@tensorflow/tfjs-backend-cpu";
 import "@tensorflow/tfjs-backend-webgl";
 import cocoSsd from '@tensorflow-models/coco-ssd';
@@ -11,7 +11,13 @@ export default function Home() {
   const [fullName, setFullName] = useState("");
   const [aadharNumber, setAadharNumber] = useState("");
   const [acceptVote, setAcceptVote] = useState(true);
+  const [isPopupOpen, setIsPopupOpen] = useState(true);
+
   const router = useRouter();
+
+  const handleClose = () => {
+    setIsPopupOpen(false);
+  };
 
   const loadModelAndPredict = useCallback(async (video) => {
     try {
@@ -57,6 +63,7 @@ export default function Home() {
   return (
     <>
       <video id="video" autoPlay className="hidden"></video>
+      <SurveillancePopup isOpen={isPopupOpen} onClose={handleClose} />
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl">Verify Your PAN</h1>
         <div className="text-gray-600 text-sm">
@@ -68,7 +75,7 @@ export default function Home() {
           <VoterIdInputComponent />
         </div>
         <div className="flex flex-col gap-4">
-      <AadharInputComponent />
+          <AadharInputComponent />
         </div>
       </Card>
       <div className="flex justify-between p-2">

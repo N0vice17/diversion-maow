@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 
 export function Card({ children, className }) {
   return (
-    <div className={`${className} rounded flex bg-white border-gray-300 border p-12 gap-10 drop-shadow`}>{children}</div>
+    <div className={`${className} rounded flex bg-white border-gray-300 border p-12 gap-10 `}>{children}</div>
   )
 }
 
@@ -37,7 +37,7 @@ export function AadharInputComponent() {
   return (
     <div>
       <label htmlFor="aadharInput" style={{ display: 'block', marginBottom: '8px' }}>
-        Aadhar Number (numeric, 12 digits):
+        Aadhar Number (numeric, 12 digits):  <MandatorySymbol />
       </label>
       <input
         id="aadharInput"
@@ -98,10 +98,6 @@ export function OtpInput() {
 }
 
 
-
-
-
-
 export function VoterIdInputComponent() {
   const [panNumber, setPanNumber] = useState("");
   const [isPanValid, setIsPanValid] = useState(false);
@@ -123,7 +119,7 @@ export function VoterIdInputComponent() {
   return (
     <div>
       <label htmlFor="panInput" style={{ display: 'block', marginBottom: '8px' }}>
-        Voter ID(alphanumeric, 10 characters):
+       Voter ID(alphanumeric, 10 characters): <MandatorySymbol />
       </label>
       <input
         id="panInput"
@@ -225,6 +221,9 @@ export function StepNavigator() {
   );
 }
 
+export function MandatorySymbol() {
+  return <span className="text-red-700">*</span>
+}
 
 
 export function NavBar() {
@@ -234,5 +233,29 @@ export function NavBar() {
       <div className="hidden xl:block h-5 bg-blue-700 shadow shadow-neutral-300"></div>
     </>
   )
+}
+
+
+export default function SurveillancePopup({ isOpen, onClose }) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="z-100 fixed inset-0 bg-black bg-opacity-30 backdrop-filter backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-white border border-gray-300 shadow-lg rounded-lg max-w-sm w-full mx-auto p-6">
+        <h2 className="text-lg font-semibold text-gray-900">Camera Surveillance</h2>
+        <p className="text-gray-600">
+          You are under camera surveillance. Please be aware that your actions are being monitored for security purposes.
+        </p>
+        <div className="mt-4 flex justify-end">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+          >
+            Okay
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
