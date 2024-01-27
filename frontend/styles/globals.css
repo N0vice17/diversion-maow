@@ -41,4 +41,44 @@ body {
     z-index: -10;
 }
 
+.footer {
+  padding: 20px 0;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.helpline, .social-media {
+  margin-top: 10px;
+}
+
+.social-media a {
+  margin: 0 10px;
+  color: #333;
+}
+
+.social-media a:hover {
+  color: #007bff;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.blinking-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+}
+
+
+
 

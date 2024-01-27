@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
-import { Card, Input } from "../components";
+import { Card, OtpInput } from "../components";
 
-export default function () {
+export default function() {
   const router = useRouter()
-return (
+  return (
     <>
       <div className="flex gap-0.5">
         <h1 className="text-2xl w-full">Opt Verification</h1>
@@ -14,14 +14,15 @@ return (
       </div>
       <Card>
         <div className="flex flex-col basis-28 justify-evenly gap-10">
-          <Input label={"OTP"} type={"tel"} />
+          <OtpInput />
         </div>
       </Card>
       <div className="flex justify-between p-2">
         <button className="rounded border-blue-900 border text-blue-900 font-bold p-2">cancel</button>
-        <button className="rounded bg-gray-400 text-gray-200 shadow shadow-gray-500 font-bold p-2" onClick={() => {router.push("connect")}}>continue</button>
+        <button className="rounded bg-gray-400 text-gray-200 shadow shadow-gray-500 font-bold p-2" onClick={() => { router.push("connect") }}>continue</button>
       </div>
     </>
-) }
+  )
+}
 
 
