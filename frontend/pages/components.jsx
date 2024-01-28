@@ -46,7 +46,7 @@ export function AadharInputComponent() {
         onChange={handleAadharChange}
         style={inputStyle}
         maxLength="12"
-    className="max-w  border border-gray-200 text-xl"
+    className="p-1 max-w border border-gray-200 text-xl"
       />
       {isAadharValid && <p style={{ color: 'green' }}>Aadhar number is valid!</p>}
     </div>
@@ -128,7 +128,7 @@ export function VoterIdInputComponent() {
         onChange={handlePanChange}
         style={inputStyle}
         maxLength="10"
-    className="max-w  border border-gray-200 text-xl"
+    className="p-1 max-w  border border-gray-200 text-xl"
       />
       {isPanValid && <p style={{ color: 'green' }}>PAN is valid!</p>}
     </div>
@@ -163,9 +163,6 @@ export function Footer() {
     </footer>
   );
 }
-
-
-
 
 
 export function StepNavigator() {
