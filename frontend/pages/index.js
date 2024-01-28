@@ -29,7 +29,7 @@ export default function Home() {
           <span className="text-red-900">*</span> Indicates mandatory fields
         </div>
       </div>
-      <Card className="flex flex-col xl:flex-row gap-4">
+      <Card className="flex flex-col gap-4">
         <div className="flex flex-col gap-4">
           <VoterIdInputComponent />
         </div>
