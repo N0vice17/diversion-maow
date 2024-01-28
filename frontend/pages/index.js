@@ -19,50 +19,9 @@ export default function Home() {
     setIsPopupOpen(false);
   };
 
-  const loadModelAndPredict = useCallback(async (video) => {
-    try {
-      const model = await cocoSsd.load();
-      const predictions = await model.detect(video);
-      const isAcceptable = predictions.every(p => p.class === "person");
-      setAcceptVote(isAcceptable);
-    } catch (error) {
-      console.error("Model prediction error:", error);
-    }
-  }, []);
-
-  useEffect(() => {
-    let video;
-    let stream;
-
-    const startVideoStream = async () => {
-      try {
-        video = document.getElementById("video");
-        stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        video.srcObject = stream;
-        video.onloadeddata = () => loadModelAndPredict(video);
-      } catch (error) {
-        console.error("Error accessing media devices:", error);
-      }
-    };
-
-    startVideoStream();
-
-    const intervalId = setInterval(() => loadModelAndPredict(video), 60 * 1000);
-
-    return () => {
-      clearInterval(intervalId);
-      if (video) {
-        video.onloadeddata = null;
-      }
-      if (stream) {
-        stream.getTracks().forEach(track => track.stop());
-      }
-    };
-  }, [loadModelAndPredict]);
 
   return (
     <>
-      <video id="video" autoPlay className="hidden"></video>
       <SurveillancePopup isOpen={isPopupOpen} onClose={handleClose} />
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl">Verify Your PAN</h1>
