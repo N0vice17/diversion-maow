@@ -242,7 +242,27 @@ export function NavBar() {
 }
 
 
+
 export default function SurveillancePopup({ isOpen, onClose }) {
+  const [timeLeft, setTimeLeft] = useState(5); // Start the countdown at 5 seconds
+  const [allowClose, setAllowClose] = useState(false);
+
+  useEffect(() => {
+    // If the popup is not open or the timer has reached 0, do nothing
+    if (!isOpen || timeLeft === 0) {
+      setAllowClose(true);
+      return;
+    }
+
+    // Set up a timeout to decrease the timer every second
+    const timerId = setTimeout(() => {
+      setTimeLeft(timeLeft - 1);
+    }, 1000);
+
+    // Clear the timeout if the component is unmounted
+    return () => clearTimeout(timerId);
+  }, [isOpen, timeLeft]);
+
   if (!isOpen) return null;
 
   return (
@@ -256,10 +276,16 @@ export default function SurveillancePopup({ isOpen, onClose }) {
         <p className="text-gray-600">
           You are under camera surveillance. Please be aware that your actions are being monitored for security purposes.
         </p>
+        <div className="mt-4">
+          <p className="text-gray-600">You can close this window in <span className="bold text-slate-900 text-xl">{timeLeft} seconds</span>.</p>
+        </div>
         <div className="mt-4 flex justify-end">
           <button
-            onClick={onClose}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+            onClick={() => allowClose && onClose()}
+            disabled={!allowClose}
+            className={`px-4 py-2 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 ${
+              allowClose ? 'bg-blue-500 hover:bg-blue-600' : 'bg-blue-300 cursor-not-allowed'
+            }`}
           >
             Okay
           </button>
@@ -268,6 +294,7 @@ export default function SurveillancePopup({ isOpen, onClose }) {
     </div>
   );
 }
+
 
 
 // Add styles for the animation
