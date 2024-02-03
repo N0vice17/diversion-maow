@@ -1,9 +1,11 @@
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { useEffect, useState, useCallback } from "react";
 import SurveillancePopup, { AadharInputComponent, Card, Input, VoterIdInputComponent } from "./components";
 import "@tensorflow/tfjs-backend-cpu";
 import "@tensorflow/tfjs-backend-webgl";
 import cocoSsd from '@tensorflow-models/coco-ssd';
+import { useAdharContext } from "./AdharContext";
+import { useVoterContext } from "./VoterContext";
 
 export default function Home() {
   const [panNumber, setPanNumber] = useState("");
@@ -12,6 +14,9 @@ export default function Home() {
   const [aadharNumber, setAadharNumber] = useState("");
   const [acceptVote, setAcceptVote] = useState(true);
   const [isPopupOpen, setIsPopupOpen] = useState(true);
+
+  const { aadhar } = useAdharContext()
+  const { voterId } = useVoterContext()
 
   const router = useRouter();
 
@@ -41,15 +46,38 @@ export default function Home() {
         <button className="rounded border-blue-900 border text-blue-900 font-bold p-2">
           Cancel
         </button>
-        <button
-          onClick={() => router.push("/verification")}
-          className="rounded bg-gray-400 text-gray-200 shadow shadow-gray-500 font-bold p-2"
-          disabled={!acceptVote}
-        >
-          Continue
-        </button>
+        <SuperButton />
       </div>
     </>
   );
 }
 
+function SuperButton() {
+  const { aadhar } = useAdharContext()
+  const { voterId } = useVoterContext()
+  const [enable, setEnable] = useState(false)
+  const router = useRouter()
+  useEffect(() => {
+    console.log(aadhar,voterId);
+    if (aadhar!=="" && voterId !=="") {
+      setEnable(true)
+    }
+  }, [aadhar, voterId])
+
+  const handelButtonLogin = () => {
+
+    if (enable) {
+      router.push("/verification")
+    }
+  }
+
+  return (
+    <button
+      onClick={handelButtonLogin}
+      className="rounded bg-gray-400 text-gray-200 shadow shadow-gray-500 font-bold p-2"
+    >
+      Continue
+    </button>
+  )
+
+}

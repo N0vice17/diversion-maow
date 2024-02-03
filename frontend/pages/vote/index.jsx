@@ -1,13 +1,35 @@
 import React from 'react';
 import { Card } from "../components";
 import { Web3Button, useContract, useContractRead, useContractWrite } from "@thirdweb-dev/react";
+import Image from 'next/image';
 
 export default function Vote() {
   const { contract } = useContract("0x621409d3b093eCa38428635D8622F343c315b44d")
   const { mutateAsync: addVoter, isLoading: isLoadingWrite, error: writeError } = useContractWrite(contract, "add_voter")
   const { data: voterList, isLoading: isLoadingRead, error: readError } = useContractRead(contract, "get_voter_list", [])
 
-  const handleAddVoter = async () => {
+  const handleAddVoter1 = async () => {
+    try {
+      await addVoter({ args: ["421972343125", "Adarsh Kumar"] });
+    } catch (error) {
+      console.error("Error adding voter:", error);
+    }
+  };
+  const handleAddVoter2 = async () => {
+    try {
+      await addVoter({ args: ["421972343125", "Adarsh Kumar"] });
+    } catch (error) {
+      console.error("Error adding voter:", error);
+    }
+  };
+  const handleAddVoter3 = async () => {
+    try {
+      await addVoter({ args: ["421972343125", "Adarsh Kumar"] });
+    } catch (error) {
+      console.error("Error adding voter:", error);
+    }
+  };
+  const handleAddVoter4 = async () => {
     try {
       await addVoter({ args: ["421972343125", "Adarsh Kumar"] });
     } catch (error) {
@@ -28,25 +50,31 @@ export default function Vote() {
           <Web3Button
             contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
             isDisabled={isLoadingWrite}
-            onClick={handleAddVoter}
+            onClick={handleAddVoter1}
           >
-            Candidate 1
+            <Image src={"/tmc.svg"} width={50} height={50} />
           </Web3Button>
-          {isLoadingRead ? (
-            <div className="flex justify-center items-center">
-              <div className="animate-spin h-6 w-6 border-4 rounded-full border-t-transparent border-blue-500"></div>
-              <span>Loading...</span>
-            </div>
-          ) : (
-            voterList?.map((voter, index) => (
-              <div key={index}>
-                <ul>
-                  <li>{voter.aadhar}</li>
-                  <li>{voter.pan}</li>
-                </ul>
-              </div>
-            ))
-          )}
+          <Web3Button
+            contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
+            isDisabled={isLoadingWrite}
+            onClick={handleAddVoter2}
+          >
+            <Image src={"/BJP.svg"} width={50} height={50} />
+          </Web3Button>
+          <Web3Button
+            contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
+            isDisabled={isLoadingWrite}
+            onClick={handleAddVoter3}
+          >
+            <Image src={"/CPI(ML).svg"} width={50} height={50} />
+          </Web3Button>
+          <Web3Button
+            contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
+            isDisabled={isLoadingWrite}
+            onClick={handleAddVoter4}
+          >
+            <Image src={"/congress.svg"} width={50} height={50} />
+          </Web3Button>
         </div>
         {writeError && <p className="text-red-500">Failed to add voter: {writeError.message}</p>}
         {readError && <p className="text-red-500">Failed to load voters: {readError.message}</p>}

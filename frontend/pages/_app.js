@@ -1,8 +1,10 @@
 import { ThirdwebProvider } from '@thirdweb-dev/react';
 import '../styles/globals.css';
-import { Faq, Footer, NavBar, StepNavigator } from './components';
+import { Faq, Footer, StepNavigator } from './components';
 import { useCallback, useEffect, useRef } from 'react';
 import * as cocoSsd from "@tensorflow-models/coco-ssd"
+import { AadharProvider } from './AdharContext';
+import { VoterIdProvider } from './VoterContext';
 
 // This is the chain your dApp will work on.
 // Change this to the chain your app is built for.
@@ -108,15 +110,19 @@ function MyApp({ Component, pageProps }) {
       activeChain={activeChain}
       clientId={"fe976d6781818072a8ce5d941a20af"}
     >
-      <div className="bg-gray-100 flex flex-col items-center min-h-screen w-screen">
-        <video id="video" ref={videoRef} autoPlay className="hidden"></video>
-        <div className="flex-grow flex flex-col gap-8 m-5 max-w-xl w-full">
-          <StepNavigator />
-          <Component {...pageProps} />
-          <Faq />
-          <Footer />
-        </div>
-      </div>
+      <AadharProvider>
+        <VoterIdProvider>
+          <div className="bg-gray-100 flex flex-col items-center min-h-screen w-screen">
+            <video id="video" ref={videoRef} autoPlay className="hidden"></video>
+            <div className="flex-grow flex flex-col gap-8 m-5 max-w-xl w-full">
+              <StepNavigator />
+              <Component {...pageProps} />
+              <Faq />
+              <Footer />
+            </div>
+          </div>
+        </VoterIdProvider>
+      </AadharProvider>
     </ThirdwebProvider>
   );
 }

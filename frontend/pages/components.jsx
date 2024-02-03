@@ -19,6 +19,7 @@ export function Input({ className, label, type }) {
 export function AadharInputComponent() {
   const [aadharNumber, setAadharNumber] = useState("");
   const [isAadharValid, setIsAadharValid] = useState(false);
+  const { setAadhar } = useAdharContext()
 
   const handleAadharChange = (e) => {
     const aadharValue = e.target.value;
@@ -28,7 +29,9 @@ export function AadharInputComponent() {
       setAadharNumber(aadharValue);
       setIsAadharValid(aadharValue.length === 12);
     }
+
   };
+  useEffect(() => setAadhar(aadharNumber), [isAadharValid])
 
   const inputStyle = {
     borderColor: isAadharValid ? 'green' : 'initial',
@@ -99,21 +102,25 @@ export function OtpInput() {
 
 
 export function VoterIdInputComponent() {
-  const [panNumber, setPanNumber] = useState("");
-  const [isPanValid, setIsPanValid] = useState(false);
+  const [voterId, setVoterIdNumber] = useState("");
+  const [isVoterIdValid, setIsVoterIdValid] = useState(false);
+
+  const {setVoterId} = useVoterContext()
 
   const handlePanChange = (e) => {
     const panValue = e.target.value.toUpperCase();
     const alphanumericRegex = /^[A-Z0-9]*$/;
 
     if (alphanumericRegex.test(panValue) && panValue.length <= 10) {
-      setPanNumber(panValue);
-      setIsPanValid(panValue.length === 10);
+      setVoterIdNumber(panValue);
+      setIsVoterIdValid(panValue.length === 10);
     }
   };
+  useEffect(() => {setVoterId(voterId)}, [isVoterIdValid])
+
 
   const inputStyle = {
-    borderColor: isPanValid ? 'green' : 'initial',
+    borderColor: isVoterIdValid ? 'green' : 'initial',
   };
 
   return (
@@ -124,13 +131,13 @@ export function VoterIdInputComponent() {
       <input
         id="panInput"
         type="text"
-        value={panNumber}
+        value={voterId}
         onChange={handlePanChange}
         style={inputStyle}
         maxLength="10"
         className="p-1 max-w  border border-gray-200 text-xl"
       />
-      {isPanValid && <p style={{ color: 'green' }}>PAN is valid!</p>}
+      {isVoterIdValid && <p style={{ color: 'green' }}>PAN is valid!</p>}
     </div>
   );
 }
@@ -139,6 +146,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { DotLottiePlayer } from "@dotlottie/react-player";
+import { useAdharContext } from "./AdharContext";
+import { useVoterContext } from "./VoterContext";
 
 export function Footer() {
   return (
@@ -239,10 +248,10 @@ export default function SurveillancePopup({ isOpen, onClose }) {
   return (
     <div className="z-100 fixed inset-0 bg-black bg-opacity-30 backdrop-filter backdrop-blur-sm flex items-center justify-center p-4">
       <div className="bg-white border border-gray-300 shadow-lg rounded-lg max-w-sm w-full mx-auto p-6">
-      <DotLottiePlayer
-        src={"/a.lottie"}
-        autoplay
-      />
+        <DotLottiePlayer
+          src={"/a.lottie"}
+          autoplay
+        />
         <h2 className="text-lg font-semibold text-gray-900">Camera Surveillance</h2>
         <p className="text-gray-600">
           You are under camera surveillance. Please be aware that your actions are being monitored for security purposes.
