@@ -1,14 +1,17 @@
-import React from 'react';
-import { Card } from "../components";
+import React, { useEffect, useState } from 'react';
+import { Card, SucessFullPopup } from "../components";
 import { Web3Button, useContract, useContractRead, useContractWrite } from "@thirdweb-dev/react";
 import Image from 'next/image';
+import { log } from '@tensorflow/tfjs';
 
 export default function Vote() {
   const { contract } = useContract("0x621409d3b093eCa38428635D8622F343c315b44d")
   const { mutateAsync: addVoter, isLoading: isLoadingWrite, error: writeError } = useContractWrite(contract, "add_voter")
   const { data: voterList, isLoading: isLoadingRead, error: readError } = useContractRead(contract, "get_voter_list", [])
+  const [done, setDone] = useState(false)
 
   const handleAddVoter1 = async () => {
+    setDone(true)
     try {
       await addVoter({ args: ["421972343125", "Adarsh Kumar"] });
     } catch (error) {
@@ -16,6 +19,7 @@ export default function Vote() {
     }
   };
   const handleAddVoter2 = async () => {
+    setDone(true)
     try {
       await addVoter({ args: ["421972343125", "Adarsh Kumar"] });
     } catch (error) {
@@ -23,6 +27,7 @@ export default function Vote() {
     }
   };
   const handleAddVoter3 = async () => {
+    setDone(true)
     try {
       await addVoter({ args: ["421972343125", "Adarsh Kumar"] });
     } catch (error) {
@@ -30,15 +35,19 @@ export default function Vote() {
     }
   };
   const handleAddVoter4 = async () => {
+    setDone(true)
     try {
       await addVoter({ args: ["421972343125", "Adarsh Kumar"] });
     } catch (error) {
       console.error("Error adding voter:", error);
     }
   };
+  useEffect(() => console.log("true"),[done]);
+  
 
   return (
     <>
+      {done ? <SucessFullPopup /> : ""}
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl">Vote</h1>
         <div className="text-sm text-gray-600">

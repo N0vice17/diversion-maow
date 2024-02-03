@@ -241,6 +241,27 @@ export function NavBar() {
   )
 }
 
+export  function SucessFullPopup() {
+
+
+  return (
+    <div className="z-100 fixed inset-0 bg-black bg-opacity-30 backdrop-filter backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-white border border-gray-300 shadow-lg rounded-lg max-w-sm w-full mx-auto p-6">
+        <DotLottiePlayer
+          src={"/ok.lottie"}
+          autoplay
+          loop
+          speed={0.5}
+        />
+        <h2 className="text-lg font-semibold text-gray-900">you have sucess</h2>
+        <p className="text-gray-600">
+          you have sucess.
+        </p>
+        
+      </div>
+    </div>
+  );
+}
 
 
 export default function SurveillancePopup({ isOpen, onClose }) {

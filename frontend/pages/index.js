@@ -6,6 +6,7 @@ import "@tensorflow/tfjs-backend-webgl";
 import cocoSsd from '@tensorflow-models/coco-ssd';
 import { useAdharContext } from "./AdharContext";
 import { useVoterContext } from "./VoterContext";
+import { DotLottiePlayer } from "@dotlottie/react-player";
 
 export default function Home() {
   const [panNumber, setPanNumber] = useState("");
@@ -35,8 +36,9 @@ export default function Home() {
         </div>
       </div>
       <Card className="flex flex-col gap-4">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-row gap-4">
           <VoterIdInputComponent />
+          {/* <DotLottiePlayer autoplay style={{zIndex:1}} src={"/type.lottie"} /> */}
         </div>
         <div className="flex flex-col gap-4">
           <AadharInputComponent />

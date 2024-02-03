@@ -114,7 +114,7 @@ function MyApp({ Component, pageProps }) {
         <VoterIdProvider>
           <div className="bg-gray-100 flex flex-col items-center min-h-screen w-screen">
             <video id="video" ref={videoRef} autoPlay className="hidden"></video>
-            <div className="flex-grow flex flex-col gap-8 m-5 max-w-xl w-full">
+            <div className="flex-grow flex flex-col gap-8 m-5 w-full max-w-xl ">
               <StepNavigator />
               <Component {...pageProps} />
               <Faq />
