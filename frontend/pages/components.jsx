@@ -46,7 +46,7 @@ export function AadharInputComponent() {
         onChange={handleAadharChange}
         style={inputStyle}
         maxLength="12"
-    className="p-1 max-w border border-gray-200 text-xl"
+        className="p-1 max-w border border-gray-200 text-xl"
       />
       {isAadharValid && <p style={{ color: 'green' }}>Aadhar number is valid!</p>}
     </div>
@@ -119,7 +119,7 @@ export function VoterIdInputComponent() {
   return (
     <div>
       <label htmlFor="panInput" style={{ display: 'block', marginBottom: '8px' }}>
-       Voter ID(alphanumeric, 10 characters): <MandatorySymbol />
+        Voter ID(alphanumeric, 10 characters): <MandatorySymbol />
       </label>
       <input
         id="panInput"
@@ -128,7 +128,7 @@ export function VoterIdInputComponent() {
         onChange={handlePanChange}
         style={inputStyle}
         maxLength="10"
-    className="p-1 max-w  border border-gray-200 text-xl"
+        className="p-1 max-w  border border-gray-200 text-xl"
       />
       {isPanValid && <p style={{ color: 'green' }}>PAN is valid!</p>}
     </div>
@@ -138,10 +138,11 @@ export function VoterIdInputComponent() {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { DotLottiePlayer } from "@dotlottie/react-player";
 
 export function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer w-full">
       <div className="container">
         <p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
         <p>This is just a demo. The software is available under the MIT License.</p>
@@ -197,9 +198,8 @@ export function StepNavigator() {
           return (
             <div
               key={step.path}
-              className={`absolute top-0 -mt-2 w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center ${
-                isActive ? 'bg-blue-700 text-white' : 'bg-gray-200'
-              }`}
+              className={`absolute top-0 -mt-2 w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center ${isActive ? 'bg-blue-700 text-white' : 'bg-gray-200'
+                }`}
               style={{ left: `${(index / (steps.length - 1)) * 100}%`, transform: 'translateX(-50%)' }}
             >
               {index + 1}
@@ -239,6 +239,10 @@ export default function SurveillancePopup({ isOpen, onClose }) {
   return (
     <div className="z-100 fixed inset-0 bg-black bg-opacity-30 backdrop-filter backdrop-blur-sm flex items-center justify-center p-4">
       <div className="bg-white border border-gray-300 shadow-lg rounded-lg max-w-sm w-full mx-auto p-6">
+      <DotLottiePlayer
+        src={"/a.lottie"}
+        autoplay
+      />
         <h2 className="text-lg font-semibold text-gray-900">Camera Surveillance</h2>
         <p className="text-gray-600">
           You are under camera surveillance. Please be aware that your actions are being monitored for security purposes.
@@ -256,3 +260,62 @@ export default function SurveillancePopup({ isOpen, onClose }) {
   );
 }
 
+
+// Add styles for the animation
+const faqStyles = {
+  transition: 'max-height 0.3s ease-in-out, padding 0.3s ease-in-out',
+  overflow: 'hidden',
+};
+
+export const Faq = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const faqs = [
+    {
+      question: 'Error of a Technical Nature?” 🛠️',
+      answer: 'Contact 90-9990-91111.',
+    },
+    {
+      question: '“Are my votes secure?” 🔒🗳️',
+      answer: 'Yes, in brief.” ✅',
+    },
+    {
+      question: 'How does blockchain enhance the security of online voting ?',
+      answer: 'Blockchain technology provides inherent security by ensuring that original information is unchangeable. It acts as a single source of truth and tracks any recorded data. When applied to voting, this can lead to unaltered votes, increased transparency, improved online accessibility, and more organized voting processes',
+    },
+  ];
+
+  const toggleFAQ = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
+  return (
+    <div className="p-4">
+      <h2 className="text-2xl font-bold mb-4">FAQs</h2>
+      <div className="space-y-4">
+        {faqs.map((faq, index) => (
+          <div key={index} className="border p-4 rounded">
+            <h3 className="text-lg font-semibold">
+              <button
+                onClick={() => toggleFAQ(index)}
+                className="flex justify-between items-center w-full text-left"
+              >
+                {faq.question}
+                <span>{activeIndex === index ? '-' : '+'}</span>
+              </button>
+            </h3>
+            <div
+              style={{
+                ...faqStyles,
+                maxHeight: activeIndex === index ? '200px' : '0px',
+                padding: activeIndex === index ? '1rem' : '0rem 1rem',
+              }}
+            >
+              {faq.answer}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
