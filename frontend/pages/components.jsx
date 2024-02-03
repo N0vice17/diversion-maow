@@ -289,7 +289,7 @@ export const Faq = () => {
       answer: 'Yes, in brief.” ✅',
     },
     {
-      question: 'How does blockchain enhance the security of online voting ?',
+      question: 'How does blockchain enhance the security of online voting?',
       answer: 'Blockchain technology provides inherent security by ensuring that original information is unchangeable. It acts as a single source of truth and tracks any recorded data. When applied to voting, this can lead to unaltered votes, increased transparency, improved online accessibility, and more organized voting processes',
     },
   ];
