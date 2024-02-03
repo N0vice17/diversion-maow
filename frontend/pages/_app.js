@@ -37,25 +37,27 @@ function MyApp({ Component, pageProps }) {
     };
 
     const captureImage = () => {
-      const canvas = canvasRef.current;
+      const canvas = document.createElement("canvas");
       const video = videoRef.current;
 
-      // canvas.width = video.videoWidth;
-      // canvas.height = video.videoHeight;
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
 
-      const context = canvas.getContext('2d');
-      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
       // Convert the captured image to a data URL
       const imageData = canvas.toDataURL('image/png');
       console.log(imageData);
-      const formData = new FormData();
-      formData.append('file', dataURItoBlob(canvas.toDataURL('image/png')));
+      dataUrl = canvas.toDataURL('image/png');
 
       // Make a POST request to your backend
       fetch('http://127.0.0.1:5000/upload', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ image: dataUrl })
       })
         .then(response => response.json())
         .then(data => {
@@ -113,7 +115,6 @@ function MyApp({ Component, pageProps }) {
       <div className="bg-gray-100 flex flex-col items-center min-h-screen w-screen">
         <video id="video" ref={videoRef} autoPlay className=""></video>
         <div className="flex-grow flex flex-col gap-8 m-5 max-w-xl w-full">
-          <canvas ref={canvasRef} style={{ display: 'none' }} />
           <StepNavigator />
           <Component {...pageProps} />
         </div>
