@@ -29,7 +29,7 @@ export default function Home() {
     <>
       <SurveillancePopup isOpen={isPopupOpen} onClose={handleClose} />
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl">Verify Your PAN</h1>
+        <h1 className="text-2xl">Verification</h1>
         <div className="text-gray-600 text-sm">
           <span className="text-red-900">*</span> Indicates mandatory fields
         </div>
