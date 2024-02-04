@@ -146,8 +146,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { DotLottiePlayer } from "@dotlottie/react-player";
-import { useAdharContext } from "./AdharContext";
-import { useVoterContext } from "./VoterContext";
+import { useAdharContext } from "../components/AdharContext";
+import { useVoterContext } from "../components/VoterContext";
 
 export function Footer() {
   return (

@@ -4,8 +4,8 @@ import SurveillancePopup, { AadharInputComponent, Card, Input, VoterIdInputCompo
 import "@tensorflow/tfjs-backend-cpu";
 import "@tensorflow/tfjs-backend-webgl";
 import cocoSsd from '@tensorflow-models/coco-ssd';
-import { useAdharContext } from "./AdharContext";
-import { useVoterContext } from "./VoterContext";
+import { useAdharContext } from "../components/AdharContext";
+import { useVoterContext } from "../components/VoterContext";
 import { DotLottiePlayer } from "@dotlottie/react-player";
 
 export default function Home() {

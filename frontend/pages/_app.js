@@ -3,8 +3,8 @@ import '../styles/globals.css';
 import { Faq, Footer, StepNavigator } from './components';
 import { useCallback, useEffect, useRef } from 'react';
 import * as cocoSsd from "@tensorflow-models/coco-ssd"
-import { AadharProvider } from './AdharContext';
-import { VoterIdProvider } from './VoterContext';
+import { AadharProvider } from '../components/AdharContext';
+import { VoterIdProvider } from '../components/VoterContext';
 
 // This is the chain your dApp will work on.
 // Change this to the chain your app is built for.

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Card, SucessFullPopup } from "../components";
 import { Web3Button, useContract, useContractRead, useContractWrite } from "@thirdweb-dev/react";
 import Image from 'next/image';
-import { useAdharContext } from '../AdharContext';
-import { useVoterContext } from '../VoterContext';
+import { useAdharContext } from '../../components/AdharContext';
+import { useVoterContext } from '../../components/VoterContext';
 
 export default function Vote() {
   const { contract } = useContract("0x621409d3b093eCa38428635D8622F343c315b44d")
