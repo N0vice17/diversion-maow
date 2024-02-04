@@ -108,7 +108,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThirdwebProvider
       activeChain={activeChain}
-      clientId={"fe976d6781818072a8ce5d941a20af"}
+      clientId={"29fe976d6781818072a8ce5d941a20af"}
     >
       <AadharProvider>
         <VoterIdProvider>
