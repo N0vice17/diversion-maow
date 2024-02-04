@@ -31,7 +31,7 @@ export function AadharInputComponent() {
     }
 
   };
-  useEffect(() => setAadhar(aadharNumber), [isAadharValid])
+  useEffect(() => setAadhar(aadharNumber), [isAadharValid,aadharNumber])
 
   const inputStyle = {
     borderColor: isAadharValid ? 'green' : 'initial',

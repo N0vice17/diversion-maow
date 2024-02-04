@@ -11,6 +11,7 @@ export default function Vote() {
   const { voterId } = useVoterContext()
   // const { mutateAsync: addVote, isLoading: isLoadingWrite, error: writeError } = useContractWrite(contract, "castVote")
   const { mutateAsync: castvote, isLoading: isLoadingWrite } = useContractWrite(contract, "castvote")
+  const [done,setDone] = useState(false)
 
   const handelOnclick1 = () => {
     try {
@@ -67,7 +68,7 @@ export default function Vote() {
 
   return (
     <>
-      {/* {done ? <SucessFullPopup /> : ""} */}
+      {done ? <SucessFullPopup /> : ""}
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl">Vote</h1>
         <div className="text-sm text-gray-600">
@@ -79,12 +80,14 @@ export default function Vote() {
           <Web3Button
             contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
             action={handelOnclick1}
+            onSuccess={() => setDone(true)}
           >
             <Image alt='tmc' src={"/tmc.svg"} width={50} height={50} />
           </Web3Button>
           <Web3Button
             contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
             isDisabled={isLoadingWrite}
+            onSuccess={() => setDone(true)}
             action={handelOnclick2}
           >
             <Image alt='bjp' src={"/BJP.svg"} width={50} height={50} />
@@ -92,6 +95,7 @@ export default function Vote() {
           <Web3Button
             contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
             isDisabled={isLoadingWrite}
+            onSuccess={() => setDone(true)}
             action={handelOnclick3}
           >
             <Image alt='cpi' src={"/CPI(ML).svg"} width={50} height={50} />
@@ -99,6 +103,7 @@ export default function Vote() {
           <Web3Button
             contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
             isDisabled={isLoadingWrite}
+            onSuccess={() => setDone(true)}
             action={handelOnclick4}
           >
             <Image alt='congress' src={"/congress.svg"} width={50} height={50} />

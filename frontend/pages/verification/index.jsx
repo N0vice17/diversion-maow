@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { Card, OtpInput } from "../components";
 
-export default function() {
+export default function Verification() {
   const router = useRouter()
   return (
     <>
