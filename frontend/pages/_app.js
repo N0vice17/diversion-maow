@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import * as cocoSsd from "@tensorflow-models/coco-ssd"
 import { AadharProvider } from '../components/AdharContext';
 import { VoterIdProvider } from '../components/VoterContext';
+import { AcceptVoterContextProvider, useAcceptVoterContext } from '../components/AccptVoterContext';
 
 // This is the chain your dApp will work on.
 // Change this to the chain your app is built for.
@@ -14,12 +15,14 @@ const activeChain = 'mumbai';
 function MyApp({ Component, pageProps }) {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const { setAcceptVoter } = useAcceptVoterContext()
   const loadModelAndPredict = useCallback(async (video) => {
     try {
       const model = await cocoSsd.load();
       const predictions = await model.detect(video);
       const isAcceptable = predictions.every(p => p.class === "person");
-      // setAcceptVote(isAcceptable);
+      console.log("LOG: cocossd -> ", isAcceptable);
+      setAcceptVoter(isAcceptable)
     } catch (error) {
       console.error("Model prediction error:", error);
     }
@@ -77,7 +80,7 @@ function MyApp({ Component, pageProps }) {
         video.onloadedmetadata = () => {
           video.play();
           loadModelAndPredict(video);
-          captureImageAndSend(video)
+          // captureImageAndSend(video)
         };
       } catch (error) {
         console.error("Error accessing media devices:", error);
@@ -87,9 +90,10 @@ function MyApp({ Component, pageProps }) {
     startVideoStream();
 
     const intervalId = setInterval(() => {
-      // loadModelAndPredict(video);
+      console.log("RUNNING COCOSSD");
+      loadModelAndPredict(video);
       //captureImageAndSend(video);
-    }, 10 * 1000);
+    }, 25 * 1000);
 
     return () => {
       clearInterval(intervalId);
@@ -112,15 +116,17 @@ function MyApp({ Component, pageProps }) {
     >
       <AadharProvider>
         <VoterIdProvider>
-          <div className="bg-gray-100 flex flex-col items-center min-h-screen w-screen">
-            <video id="video" ref={videoRef} autoPlay className="hidden"></video>
-            <div className="flex-grow flex flex-col gap-8 m-5 w-full max-w-xl ">
-              <StepNavigator />
-              <Component {...pageProps} />
-              <Faq />
-              <Footer />
+          <AcceptVoterContextProvider>
+            <div className="bg-gray-100 flex flex-col items-center min-h-screen w-screen">
+              <video id="video" ref={videoRef} autoPlay className="hidden"></video>
+              <div className="flex-grow flex flex-col gap-8 m-5 w-full max-w-xl ">
+                <StepNavigator />
+                <Component {...pageProps} />
+                <Faq />
+                <Footer />
+              </div>
             </div>
-          </div>
+          </AcceptVoterContextProvider>
         </VoterIdProvider>
       </AadharProvider>
     </ThirdwebProvider>
