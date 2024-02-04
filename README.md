@@ -1,7 +1,7 @@
 # Decentralized Voting App
 
 ![Landing_Page](https://github.com/N0vice17/diversion-maow/blob/main/frontend/public/landing_page.png)
-![Landing_Page1](https://github.com/N0vice17/diversion-maow/blob/main/frontend/public/landing_page1.png)
+![Landing_Page1](https://github.com/N0vice17/diversion-maow/blob/main/frontend/public/landing_page2.png)
 
 ## Overview
 
