@@ -6,7 +6,7 @@ export default function Verification() {
   return (
     <>
       <div className="flex gap-0.5">
-        <h1 className="text-2xl w-full">Opt Verification</h1>
+        <h1 className="text-2xl w-full">Otp Verification</h1>
         <div className="flex w-full justify-end items-end text-gray-600 text-sm gap-0.5">
           <a className="text-red-900">*</a>
           Indicates mandatory fields

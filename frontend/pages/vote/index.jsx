@@ -11,7 +11,7 @@ export default function Vote() {
   const { voterId } = useVoterContext()
   // const { mutateAsync: addVote, isLoading: isLoadingWrite, error: writeError } = useContractWrite(contract, "castVote")
   const { mutateAsync: castvote, isLoading: isLoadingWrite } = useContractWrite(contract, "castvote")
-  const [done,setDone] = useState(false)
+  const [done, setDone] = useState(false)
 
   const handelOnclick1 = () => {
     try {
