@@ -8,7 +8,7 @@ describe("Voter_contract", function () {
         for (var i = 0; i < 3; i++) {
             await voter_contract.setdata(`MAOW${i}`, `MAOW${i}`, `MAOW${i}`, `MAOW${i}`)
         }
-        const voterdata = await voter_contract.getdata();
+        // const voterdata = await voter_contract.getdata();
         // console.log(voterdata);
     });
 });

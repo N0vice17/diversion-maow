@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { Card } from "../components";
 import { ConnectWallet } from "@thirdweb-dev/react";
 
-export default function() {
+export default function () {
   const router = useRouter()
   return (
     <>

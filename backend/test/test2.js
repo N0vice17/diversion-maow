@@ -6,12 +6,11 @@ describe("Voting_contract", function () {
         const Voting_contract = await ethers.getContractFactory("Voting_contract");
         const voting_contract = await Voting_contract.deploy();
         for (var i = 0; i < 3; i++) {
-            await voting_contract.setdata(`MAOW${i}`, `MAOW${i}`)
+            await voting_contract.add_voter(`MAOW${i}`, `MAOW${i}`)
         }
-
         await voting_contract.castvote("MAOW1", "MAOW1", 1);
         await voting_contract.castvote("MAO2", "MAOW2", 0);
-        const data = await voting_contract.get_votes_data();
+        const data = await voting_contract.get_votes_of_each_party();
         await voting_contract.castvote("MAOW1", "MAOW1", 1);
         console.log(data);
     });

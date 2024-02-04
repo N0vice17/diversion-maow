@@ -137,7 +137,7 @@ export function VoterIdInputComponent() {
         maxLength="10"
         className="p-1 max-w  border border-gray-200 text-xl"
       />
-      {isVoterIdValid && <p style={{ color: 'green' }}>PAN is valid!</p>}
+      {isVoterIdValid && <p style={{ color: 'green' }}>Voter ID is valid!</p>}
     </div>
   );
 }
