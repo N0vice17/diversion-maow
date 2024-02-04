@@ -36,7 +36,7 @@ export default function Vote() {
                 </div>
                 <div>
                     <div>
-                        CPM
+                        BJP
                         <div>
                             {isLoading? "a" : data[1].toNumber()}
                         </div>
@@ -44,7 +44,7 @@ export default function Vote() {
                 </div>
                 <div>
                     <div>
-                        BJP
+                        CPM
                         <div>
                             {isLoading? "a" : data[2].toNumber()}
                         </div>
