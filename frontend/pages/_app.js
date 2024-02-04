@@ -87,7 +87,7 @@ function MyApp({ Component, pageProps }) {
     startVideoStream();
 
     const intervalId = setInterval(() => {
-      loadModelAndPredict(video);
+      // loadModelAndPredict(video);
       //captureImageAndSend(video);
     }, 10 * 1000);
 
