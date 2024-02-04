@@ -2,52 +2,51 @@ import React, { useEffect, useState } from 'react';
 import { Card, SucessFullPopup } from "../components";
 import { Web3Button, useContract, useContractRead, useContractWrite } from "@thirdweb-dev/react";
 import Image from 'next/image';
-import { log } from '@tensorflow/tfjs';
+import { useAdharContext } from '../AdharContext';
+import { useVoterContext } from '../VoterContext';
 
 export default function Vote() {
   const { contract } = useContract("0x621409d3b093eCa38428635D8622F343c315b44d")
-  const { mutateAsync: addVoter, isLoading: isLoadingWrite, error: writeError } = useContractWrite(contract, "add_voter")
-  const { data: voterList, isLoading: isLoadingRead, error: readError } = useContractRead(contract, "get_voter_list", [])
-  const [done, setDone] = useState(false)
+  const { aadhar } = useAdharContext()
+  const { voterId } = useVoterContext()
+  // const { mutateAsync: addVote, isLoading: isLoadingWrite, error: writeError } = useContractWrite(contract, "castVote")
+  const { mutateAsync: castvote, isLoading: isLoadingWrite } = useContractWrite(contract, "castvote")
 
-  const handleAddVoter1 = async () => {
-    setDone(true)
+  const handelOnclicl1 = async () => {
     try {
-      await addVoter({ args: ["421972343125", "Adarsh Kumar"] });
+      await castvote({ args: ["421972343125", "Adarsh Kumar", 0] });
     } catch (error) {
       console.error("Error adding voter:", error);
     }
-  };
-  const handleAddVoter2 = async () => {
-    setDone(true)
-    try {
-      await addVoter({ args: ["421972343125", "Adarsh Kumar"] });
-    } catch (error) {
-      console.error("Error adding voter:", error);
-    }
-  };
-  const handleAddVoter3 = async () => {
-    setDone(true)
-    try {
-      await addVoter({ args: ["421972343125", "Adarsh Kumar"] });
-    } catch (error) {
-      console.error("Error adding voter:", error);
-    }
-  };
-  const handleAddVoter4 = async () => {
-    setDone(true)
-    try {
-      await addVoter({ args: ["421972343125", "Adarsh Kumar"] });
-    } catch (error) {
-      console.error("Error adding voter:", error);
-    }
-  };
-  useEffect(() => console.log("true"),[done]);
-  
+  }
+  // const handleAddVoter2 = async () => {
+  //   setDone(true)
+  //   try {
+  //     // await addVote({ args: [aadhar, voterId, 1] });
+  //   } catch (error) {
+  //     console.error("Error adding voter:", error);
+  //   }
+  // };
+  // const handleAddVoter3 = async () => {
+  //   setDone(true)
+  //   try {
+  //     // await addVote({ args: [aadhar, voterId, 2] });
+  //   } catch (error) {
+  //     console.error("Error adding voter:", error);
+  //   }
+  // };
+  // const handleAddVoter4 = async () => {
+  //   setDone(true)
+  //   try {
+  //     // await addVote({ args: [aadhar, voterId, 3] });
+  //   } catch (error) {
+  //     console.error("Error adding voter:", error);
+  //   }
+  // };
 
   return (
     <>
-      {done ? <SucessFullPopup /> : ""}
+      {/* {done ? <SucessFullPopup /> : ""} */}
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl">Vote</h1>
         <div className="text-sm text-gray-600">
@@ -59,34 +58,34 @@ export default function Vote() {
           <Web3Button
             contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
             isDisabled={isLoadingWrite}
-            onClick={handleAddVoter1}
+            onClick={handelOnclicl1}
           >
-            <Image src={"/tmc.svg"} width={50} height={50} />
+            <Image alt='tmc' src={"/tmc.svg"} width={50} height={50} />
           </Web3Button>
-          <Web3Button
+          {/* <Web3Button
             contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
             isDisabled={isLoadingWrite}
             onClick={handleAddVoter2}
           >
-            <Image src={"/BJP.svg"} width={50} height={50} />
+            <Image alt='bjp' src={"/BJP.svg"} width={50} height={50} />
           </Web3Button>
           <Web3Button
             contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
             isDisabled={isLoadingWrite}
             onClick={handleAddVoter3}
           >
-            <Image src={"/CPI(ML).svg"} width={50} height={50} />
+            <Image alt='cpi' src={"/CPI(ML).svg"} width={50} height={50} />
           </Web3Button>
           <Web3Button
             contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
             isDisabled={isLoadingWrite}
             onClick={handleAddVoter4}
           >
-            <Image src={"/congress.svg"} width={50} height={50} />
-          </Web3Button>
+            <Image alt='congress' src={"/congress.svg"} width={50} height={50} />
+          </Web3Button> */}
         </div>
-        {writeError && <p className="text-red-500">Failed to add voter: {writeError.message}</p>}
-        {readError && <p className="text-red-500">Failed to load voters: {readError.message}</p>}
+        {/* {writeError && <p className="text-red-500">Failed to add voter: {writeError.message}</p>} */}
+        {/* {readError && <p className="text-red-500">Failed to load voters: {readError.message}</p>} */}
       </Card>
     </>
   );
