@@ -31,7 +31,7 @@ export function AadharInputComponent() {
     }
 
   };
-  useEffect(() => setAadhar(aadharNumber), [isAadharValid,aadharNumber])
+  useEffect(() => setAadhar(aadharNumber), [isAadharValid, aadharNumber])
 
   const inputStyle = {
     borderColor: isAadharValid ? 'green' : 'initial',
@@ -105,7 +105,7 @@ export function VoterIdInputComponent() {
   const [voterId, setVoterIdNumber] = useState("");
   const [isVoterIdValid, setIsVoterIdValid] = useState(false);
 
-  const {setVoterId} = useVoterContext()
+  const { setVoterId } = useVoterContext()
 
   const handlePanChange = (e) => {
     const panValue = e.target.value.toUpperCase();
@@ -116,7 +116,7 @@ export function VoterIdInputComponent() {
       setIsVoterIdValid(panValue.length === 10);
     }
   };
-  useEffect(() => {setVoterId(voterId)}, [isVoterIdValid])
+  useEffect(() => { setVoterId(voterId) }, [isVoterIdValid])
 
 
   const inputStyle = {
@@ -241,7 +241,7 @@ export function NavBar() {
   )
 }
 
-export  function SucessFullPopup() {
+export function SucessFullPopup() {
 
 
   return (
@@ -257,7 +257,28 @@ export  function SucessFullPopup() {
         <p className="text-gray-600">
           you have sucess.
         </p>
-        
+
+      </div>
+    </div>
+  );
+}
+
+
+
+export function PleaseComeBackPopup() {
+
+
+  return (
+    <div className="z-100 fixed inset-0 bg-black bg-opacity-30 backdrop-filter backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-white border border-gray-300 shadow-lg rounded-lg max-w-sm w-full mx-auto p-6">
+        <DotLottiePlayer
+          src={"/a.lottie"}
+          autoplay
+        />
+        <h2 className="text-lg font-semibold text-gray-900">Camera Surveillance Warnning!</h2>
+        <p className="text-gray-600">
+          Please stay in front of the camera.
+        </p>
       </div>
     </div>
   );
@@ -304,9 +325,8 @@ export default function SurveillancePopup({ isOpen, onClose }) {
           <button
             onClick={() => allowClose && onClose()}
             disabled={!allowClose}
-            className={`px-4 py-2 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 ${
-              allowClose ? 'bg-blue-500 hover:bg-blue-600' : 'bg-blue-300 cursor-not-allowed'
-            }`}
+            className={`px-4 py-2 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 ${allowClose ? 'bg-blue-500 hover:bg-blue-600' : 'bg-blue-300 cursor-not-allowed'
+              }`}
           >
             Okay
           </button>
