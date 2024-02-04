@@ -80,14 +80,14 @@ export default function Vote() {
           <Web3Button
             contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
             action={handelOnclick1}
-            onSuccess={() => setDone(true)}
+            onSuccess={() => setTimeout(()=>setDone(true),8*1000)}
           >
             <Image alt='tmc' src={"/tmc.svg"} width={50} height={50} />
           </Web3Button>
           <Web3Button
             contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
             isDisabled={isLoadingWrite}
-            onSuccess={() => setDone(true)}
+            onSuccess={() => setTimeout(()=>setDone(true),8*1000)}
             action={handelOnclick2}
           >
             <Image alt='bjp' src={"/BJP.svg"} width={50} height={50} />
@@ -95,7 +95,7 @@ export default function Vote() {
           <Web3Button
             contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
             isDisabled={isLoadingWrite}
-            onSuccess={() => setDone(true)}
+            onSuccess={() => setTimeout(()=>setDone(true),8*1000)}
             action={handelOnclick3}
           >
             <Image alt='cpi' src={"/CPI(ML).svg"} width={50} height={50} />
@@ -103,7 +103,7 @@ export default function Vote() {
           <Web3Button
             contractAddress="0x621409d3b093eCa38428635D8622F343c315b44d"
             isDisabled={isLoadingWrite}
-            onSuccess={() => setDone(true)}
+            onSuccess={() => setTimeout(()=>setDone(true),8*1000)}
             action={handelOnclick4}
           >
             <Image alt='congress' src={"/congress.svg"} width={50} height={50} />
